@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'univers_tabs.html' %}
+<h1>
+    {{ univers.pseudo }}
+</h1>
+
+<h2>
+    Votre livre préféré
+</h2>
+
+<form action="{% url 'univers_book' user.id %}" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Sauvegarder"/>
+</form>
+
+{% include 'univers_tools.html' %}
+
+{% endblock content %}

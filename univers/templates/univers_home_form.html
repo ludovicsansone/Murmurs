@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'univers_tabs.html' %}
+
+<h1>
+    {{ univers.pseudo }}
+    {% if age %}
+     ({{ univers.sexe }} de {{ age }} ans)
+    {% endif %}
+</h1>
+
+{% if error == True %}
+    Il y a une erreur
+{% endif %}
+
+<form action="{% url 'univers_home_form' user.id 'send'%}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="{{ buttonValue }}"/>
+</form>
+
+{% include 'univers_tools.html' %}
+
+{% endblock %}

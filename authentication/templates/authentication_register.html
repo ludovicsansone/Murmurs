@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>
+    Inscription
+</h1>
+
+{{ user.id }}
+{% if envoi %}
+<p>
+    Vous êtes désormais inscrit
+</p>
+
+<p>
+<a href="{% url 'authentication_login' %}">
+    vous pouvez désormais vous connecter
+</a>
+</p
+{% else %}
+
+<form action="{% url 'authentication_register' %}" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Valider"/>
+</form>
+
+<p>
+<a href="{% url 'home' %}">
+    Annuler
+</a>
+</p>
+{% endif %}
+{% endblock %}

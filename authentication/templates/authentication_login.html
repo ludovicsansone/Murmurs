@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>
+    Connexion
+</h1>
+
+<p>
+    Vous pouvez vous connecter en saisissant votre nom d'utilisateur est votre mot de passe dans le formulaire ci-dessous.
+</p>
+
+<p>
+    Si vous n'avez pas encore de compte, vous pouvez vous inscrire 
+    <a href="{% url 'authentication_register' %}">
+        en cliquant ici.
+    </a>
+</p>
+
+{% if error %}
+<p>
+    Nom d'utilisateur ou mot de passe invalide
+</p>
+{% endif %}
+
+<form action="{% url 'authentication_login' %}" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Connexion"/>
+</form>
+
+<p>
+    <a href="{% url 'home' %}">
+        Annuler
+    </a>
+</p>
+{% endblock%}

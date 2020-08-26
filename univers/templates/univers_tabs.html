@@ -1,0 +1,26 @@
+<h3>
+    Univers
+</h3>
+
+<ul>
+    <li>
+        <a href="{% url 'univers_home' user.id %}">
+            Résumé
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'univers_artistic_tastes' user.id %}">
+            Goûts artistiques
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'univers_appearance' user.id %}">
+            Apparance   
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'univers_reaction' user.id %}">
+            Réactions
+        </a>
+    </li>
+</ul>

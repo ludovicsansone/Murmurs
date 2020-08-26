@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'univers_tabs.html'%}
+
+<h1>
+    {{ univers.pseudo }}
+</h1>
+
+<h2>
+    Goûts artistiques
+</h2>
+
+{% if univers.livrePrefere %}
+<p>
+    Votre livre préféré : {{ univers.livrePrefere }} ({{ univers.aProposDuLivre }})
+</p>
+<p>
+    <a href="{% url 'univers_book' user.id %}">
+        Modifier le livre
+    </a>
+</p>
+
+{% else %}
+<p>
+    <a href="{% url 'univers_book' user.id %}">
+        Ajouter votre livre préféré
+    </a>
+</p>
+{% endif %}
+
+{% if univers.filmPrefere %}
+<p>
+    Votre film préféré : {{ univers.filmPrefere }} ({{ univers.aProposDuFilm }})
+</p>
+{% else %}
+<p>
+    <a href="">
+        Ajouter votre film préféré
+    </a>
+</p>
+{% endif %}
+
+{% if univers.chansonPreferee %}
+<p>
+    Votre chanson préférée : {{ univers.chansonPreferee }} ({{ univers.aProposDeLaChanson }})
+</p>
+{% else %}
+<p>
+    <a href="">
+        Ajouter votre chanson préférée
+    </a>
+</p>
+{% endif %}
+
+{% include 'univers_tools.html' %}
+
+{% endblock content %}

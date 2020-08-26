@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>
+        Murmurs
+    </title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+{% block navigation %}
+<nav>
+    <li>
+        <a href="{% url 'home' %}">
+            Accueil
+        </a>
+    </li>
+    {% if user.is_authenticated == False %}
+    <li>
+        <a href="{% url 'authentication_login' %}">
+            Connexion/Inscription
+        </a>
+    </li>
+    {% else %}
+    <li>
+        <a href="{% url 'univers_home' user.id %}">
+            Votre Univers
+        </a>
+    </li>
+    </li>
+    <li>
+        <a href="{% url 'authentication_logout' %}">
+            Déconnexion
+        </a>
+    </li>
+    {% endif %}
+    </li>
+    
+</nav>
+{% endblock %}
+
+{% block content %}
+<h1>
+    Murmurs
+</h1>
+
+<p>
+    Bonjour chers visiteurs. L'application Murmurs,est la première plate-forme de rencontre basée sur la voix de ses membres. Voici comment cela fonctionne :
+</p>
+
+<ol>
+    <li>
+        On démarre par une traditionnelle création de compte,
+    </li>
+    <li>
+        Puis on complète son profile, en l'enrichissant de petits messages vocaux. 
+    </li>
+    <li>
+        Vous pouvez utiliser le micro de votre ordinateur, ou téléverser des fichiers existants.
+    </li>
+    <li>
+        N'hésitez pas à laisser libre cours à votre imagination et votre créativité, c'est ainsi que vous ferez entrer vos visiteurs dans votre univers, et suciterez l'intérêt.
+    </li>
+    <li>
+        Il ne vous reste plus qu'à ajouter votre photo si vous le souhaitez, et votre inscription sera terminée
+    </li>
+</ol>
+
+<p>
+    <a href="{% url 'authentication_register' %}">
+        Commencer l'inscription
+    </a>
+</p>
+{% endblock %}
+
+{% block footer %}
+{% if user.is_authenticated %}
+<p>
+    Connecté comme {{ user.username }}
+</p>
+{% endif %}
+{% endblock %}
+
+</body>
+</html>

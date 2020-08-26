@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'univers_tabs.html' %}
+<div id="app">
+<h1>
+    [[ v_univers.pseudo ]]
+    {% if age %}
+     ({{ univers.sexe }} de [[ v_age ]] ans)
+    {% endif %}
+</h1>
+
+{% if empty_univers == False %}
+<p>
+    Habite {{ univers.villeDeResidence }}
+</p>
+<p>
+    Recherche 
+    {% if univers.recherche == 'femme'%}
+        une Femme
+    {% elif univers.recherche == 'homme'  %}
+        un Homme
+    {% elif univers.recherche == 'couple'  %}
+        un Couple
+    {% endif %}
+
+
+<h2>
+    Présentation
+</h2>
+
+<p>
+    {{ univers.presentation }}
+</p>
+
+<p>
+<a href="{% url 'univers_home_form' user.id 'update' %}">
+    Modifier votre résumé
+</a>
+</p>
+
+{% else %}
+<p>
+    Votre univers est vide pour le moment. Veuillez le compléter 
+    <a href="{% url 'univers_home_form' user.id 'create' %}">
+        en cliquant ici...
+    </a>
+</p>
+{% endif %}
+
+{% include 'univers_tools.html' %}
+
+</div>
+
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        delimiters: ['[[', ']]'],
+        data: {
+            v_univers: {{ univers_json|safe }}[0].fields,
+            v_age: {{ age }}
+        }
+    })
+</script>
+
+{% endblock %}
+
